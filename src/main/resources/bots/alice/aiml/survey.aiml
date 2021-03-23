@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<category>
+    <pattern>START</pattern>Hi
+
+    <template>
+    	<think>
+    	    <set name="surveyemail">survey@company.com</set>
+    	    <set name="surveyname">User Survey</set>
+            <set name="question1">Who is/are the person/s?</set>
+            <set name="question2">Can you describe the problem from someone's point of view who was not involved in it?</set>
+            <set name="question3">How do you describe this problem?</set>
+            <set name="question4">How does the other person describe it?</set>
+            <set name="question5">Why do you see the problem that way?</set>
+            <set name="question6">Why does the other person see the problem that way?</set>
+            <set name="question7">What/How do you feel about it?</set>
+            <set name="question8">What kind of thoughts did you have about it?</set>
+            <set name="question9">Thank you for your response, type END to end survey</set>
+            <set name="responses">Survey Responses: </set>
+            <set name="qnum">1</set>
+    	</think>
+	    <srai>SurveyLoop</srai>
+    </template>
+</category>
+	
+<category>
+    <pattern>SurveyLoop</pattern>
+    <template>
+        <think>
+            <set name="question"><get><name>question<get name="qnum"/></name></get></set>
+        </think>
+        <condition name="question">
+            <li value="unknown"><srai>EndSurvey</srai></li>
+            <li><think><set name="topic">SURVEY</set></think><get name="question"/></li>
+        </condition>
+    </template>
+</category>
+
+<topic name="SURVEY">
+<category>
+    <pattern>_</pattern>
+    <template>
+        <think>
+            <set name="topic"></set>
+            <set name="responses"><get name="responses"/> --- <star/></set>
+            <set name="qnum"><map name="successor"><get name="qnum"/></map></set>
+        </think>
+        <srai>SurveyLoop</srai>
+    </template>
+</category>  
+</topic>
+
+<category>
+    <pattern>EndSurvey</pattern>
+    <template>
+        That's the end of the survey
+    </template>
+</category>
+
+</aiml>
