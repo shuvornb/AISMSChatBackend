@@ -2,8 +2,7 @@
 <aiml version="2.0">
 
 <category>
-    <pattern>START</pattern>Hi
-
+    <pattern>START</pattern>
     <template>
     	<think>
     	    <set name="surveyemail">survey@company.com</set>
