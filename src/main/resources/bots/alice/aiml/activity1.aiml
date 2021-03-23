@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<category>
+    <pattern>HI</pattern>
+    <template>Are you having problem with someone?(Yes/No)</template>
+</category>
+<category>
+    <pattern>No</pattern>
+    <template>Okay, type END to end survey</template>
+</category>
+<category>
+    <pattern>Yes</pattern>
+    <template>Type START to begin this activity</template>
+</category>
+</aiml>
