@@ -5,8 +5,6 @@
     <pattern>START</pattern>
     <template>
     	<think>
-    	    <set name="surveyemail">survey@company.com</set>
-    	    <set name="surveyname">User Survey</set>
             <set name="question1">Who is/are the person/s?</set>
             <set name="question2">Can you describe the problem from someone's point of view who was not involved in it?</set>
             <set name="question3">How do you describe this problem?</set>
@@ -15,28 +13,28 @@
             <set name="question6">Why does the other person see the problem that way?</set>
             <set name="question7">What/How do you feel about it?</set>
             <set name="question8">What kind of thoughts did you have about it?</set>
-            <set name="question9">Thank you for your response, type END to end survey</set>
-            <set name="responses">Survey Responses: </set>
+            <set name="question9">Thank you for your response, type END to end session</set>
+            <set name="responses">Session Responses: </set>
             <set name="qnum">1</set>
     	</think>
-	    <srai>SurveyLoop</srai>
+	    <srai>Activity1Loop</srai>
     </template>
 </category>
 	
 <category>
-    <pattern>SurveyLoop</pattern>
+    <pattern>Activity1Loop</pattern>
     <template>
         <think>
             <set name="question"><get><name>question<get name="qnum"/></name></get></set>
         </think>
         <condition name="question">
-            <li value="unknown"><srai>EndSurvey</srai></li>
-            <li><think><set name="topic">SURVEY</set></think><get name="question"/></li>
+            <li value="unknown"><srai>EndSession</srai></li>
+            <li><think><set name="topic">SESSION</set></think><get name="question"/></li>
         </condition>
     </template>
 </category>
 
-<topic name="SURVEY">
+<topic name="SESSION">
 <category>
     <pattern>_</pattern>
     <template>
@@ -45,15 +43,15 @@
             <set name="responses"><get name="responses"/> --- <star/></set>
             <set name="qnum"><map name="successor"><get name="qnum"/></map></set>
         </think>
-        <srai>SurveyLoop</srai>
+        <srai>Activity1Loop</srai>
     </template>
 </category>  
 </topic>
 
 <category>
-    <pattern>EndSurvey</pattern>
+    <pattern>EndSession</pattern>
     <template>
-        That's the end of the survey
+        That's the end of the session
     </template>
 </category>
 
