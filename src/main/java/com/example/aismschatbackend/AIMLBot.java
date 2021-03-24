@@ -16,8 +16,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Scanner;
 import java.io.File;
 
@@ -37,8 +35,7 @@ public class AIMLBot {
         if (!theDir.exists()){
             theDir.mkdirs();
         }
-        LocalDateTime start_timestamp = LocalDateTime.now();
-        String start = start_timestamp.toString();
+        long start_timestamp = System.currentTimeMillis();
 
         //XML FIle formatting
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -71,7 +68,7 @@ public class AIMLBot {
             if (userStr.equals("END")) break;
             String botStr = chatSession.multisentenceRespond(userStr);
             System.out.println("Bot: " + botStr);
-            // user_input element
+            // bot_input element
             Element chatBot = doc.createElement("chatBot");
             Attr attrType1 = doc.createAttribute("string");
             attrType1.setValue("input");
@@ -80,9 +77,9 @@ public class AIMLBot {
             chat.appendChild(chatBot);
 
         }
-        LocalTime end_timestamp = LocalTime.now();
-        String end = end_timestamp.toString();
-        String fileName = start + end;
+        long end_timestamp = System.currentTimeMillis();
+
+        String fileName = start_timestamp + "-" + end_timestamp + "-user_id";
         fileName = fileName.replace(':','-');
         // write the content into xml file
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
