@@ -1,0 +1,27 @@
+USER:Hi
+BOT:Are you having problem with someone?(Yes/No) 
+ USER:YES
+BOT:Type START to begin this activity 
+ USER:start
+BOT:Who is/are the person/s? 
+ USER:qwertyuiop
+BOT:Can you describe the problem from someone's point of view who was not involved in it? 
+ USER:qazwsx
+BOT:How do you describe this problem? 
+ USER:qwertyuiop
+BOT:How does the other person describe it? 
+ USER:qwertyuiop
+BOT:Why do you see the problem that way? 
+ USER:qwert
+BOT:Why does the other person see the problem that way? 
+ USER:qwert
+BOT:What/How do you feel about it? 
+ USER:qwert
+BOT:What kind of thoughts did you have about it? 
+ USER:qwet
+BOT:Okay, type END to end survey 
+ USER:end
+BOT:That's the end of the survey 
+ USER:okay
+BOT:I have no answer for that. 
+ USER:END

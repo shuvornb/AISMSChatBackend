@@ -2,12 +2,12 @@
 <aiml version="2.0">
 
 <category>
-    <pattern>HI</pattern>
-    <template>Are you having problem with someone?(Yes/No)</template>
+    <pattern>Initial handshaking</pattern>
+    <template>Hello Participant! Type START to begin this activity</template>
 </category>
 <category>
     <pattern>No</pattern>
-    <template>Okay, type END to end survey</template>
+    <template>Okay, type END to end this activity</template>
 </category>
 <category>
     <pattern>Yes</pattern>
