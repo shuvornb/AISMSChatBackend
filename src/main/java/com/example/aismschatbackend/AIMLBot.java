@@ -28,7 +28,7 @@ public class AIMLBot {
 
         Chat chatSession = new Chat(bot);
         Scanner sc = new Scanner(System.in);
-        System.out.println("Hello there! Type Hi to start this session.");
+        System.out.println("Hello participant! Let's start this session");
         System.out.println("PLease avoid using '.' in your response");
         //create the directory
         File theDir = new File("C:\\Users\\trina\\IdeaProjects\\AISMSChatBackend\\chatlog");

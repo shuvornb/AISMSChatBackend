@@ -1,3 +1,0 @@
-0,HI,*,*,Are you having problem with someone?(Yes/No),activity1.aiml
-0,NO,*,*,Okay#Comma type END to end survey,activity1.aiml
-0,YES,*,*,Type START to begin this activity,activity1.aiml
