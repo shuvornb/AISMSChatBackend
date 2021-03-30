@@ -1,0 +1,3 @@
+0,INITIAL HANDSHAKING,*,*,Hello Participant! Type START to begin this activity,activity1.aiml
+0,NO,*,*,Okay#Comma type END to end this activity,activity1.aiml
+0,YES,*,*,Type START to begin this activity,activity1.aiml

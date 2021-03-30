@@ -1,33 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml version="2.0">
-<category>
-    <pattern>HELLO</pattern>
-    <template>Are you having problem with someone?(Yes/No)</template>
-</category>
-<category>
-    <pattern>NO</pattern>
 
-    <template>Okay, what would you like to talk about instead?</template>
-</category>
 <category>
-    <pattern>*</pattern>
-    <that>Okay, what would you like to talk about instead?</that>
-    <template>Alright, let's switch to <star/></template>
-</category>
-<category>
-    <pattern>YES</pattern>
-
+    <pattern>START</pattern>
     <template>
     	<think>
-            <set name="question1">Who is the person you are having problem with?</set>
-            <set name="question2">Can you describe the problem from someone's point of view who was not involved in it?</set>
-            <set name="question3">How do you describe this problem?</set>
-            <set name="question4">How does the other person describe it?</set>
-            <set name="question5">Why do you see the problem that way?</set>
-            <set name="question6">Why does the other person see the problem that way?</set>
-            <set name="question7">What/How do you feel about it?</set>
-            <set name="question8">What kind of thoughts did you have about it?</set>
-            <set name="question9">Thank you for your response, type END to end session</set>
+            <set name="question1">Are you having problem with someone?(Yes/No)?</set>
+            <set name="question2">Who is/are the person/s?</set>
+            <set name="question3">Can you describe the problem from someone's point of view who was not involved in it?</set>
+            <set name="question4">How do you describe this problem?</set>
+            <set name="question5">How does the other person describe it?</set>
+            <set name="question6">Why do you see the problem that way?</set>
+            <set name="question7">Why does the other person see the problem that way?</set>
+            <set name="question8">What/How do you feel about it?</set>
+            <set name="question9">What kind of thoughts did you have about it?</set>
+            <set name="question10">Thank you for your response, type END to end session</set>
             <set name="responses">Session Responses: </set>
             <set name="qnum">1</set>
     	</think>

@@ -3,6 +3,7 @@ package com.example.aismschatbackend;
 import org.alicebot.ab.Bot;
 import org.alicebot.ab.Chat;
 import org.alicebot.ab.configuration.BotConfiguration;
+import org.springframework.stereotype.Service;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -15,70 +16,69 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.IOException;
-import java.util.Scanner;
 import java.io.File;
 
-public class AIMLBot {
-    public static void main(String[] args) throws IOException, ParserConfigurationException, TransformerException {
-        Bot bot = new Bot(BotConfiguration.builder()
+@Service
+public class ChatService {
+    private Element chat;
+    private DocumentBuilderFactory dbFactory;
+    private DocumentBuilder dBuilder;
+    private Document doc;
+    private Bot bot;
+    public Chat chatSession;
+
+    public ChatService() throws ParserConfigurationException {
+
+        bot = new Bot(BotConfiguration.builder()
                 .name("alice")
                 .path("src/main/resources")
                 .build());
+        chatSession = new Chat(bot);
 
-        Chat chatSession = new Chat(bot);
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Hello participant! Let's start this session");
-        System.out.println("PLease avoid using '.' in your response");
         //create the directory
         File theDir = new File("C:\\Users\\shuvo\\Desktop\\NIJ Project\\5 Keys Project\\AISMSChatBackend\\chatlog");
         if (!theDir.exists()){
             theDir.mkdirs();
         }
-        long start_timestamp = System.currentTimeMillis();
 
-        //XML FIle formatting
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.newDocument();
+        dbFactory = DocumentBuilderFactory.newInstance();
+        dBuilder = dbFactory.newDocumentBuilder();
+        doc = dBuilder.newDocument();
 
         // root element
         Element rootElement = doc.createElement("activity1");
         doc.appendChild(rootElement);
 
         // chat element
-        Element chat = doc.createElement("chat");
+        chat = doc.createElement("chat");
         rootElement.appendChild(chat);
 
         // setting attribute to element
         Attr attr = doc.createAttribute("session");
         attr.setValue("user_id");
         chat.setAttributeNode(attr);
-        while(true) {
-            System.out.print("User: ");
-            String userStr = sc.nextLine();
-            // user_input element
-            Element user = doc.createElement("user");
-            Attr attrType = doc.createAttribute("string");
-            attrType.setValue("input");
-            user.setAttributeNode(attrType);
-            user.appendChild(doc.createTextNode(userStr));
-            chat.appendChild(user);
+    }
 
-            if (userStr.equals("END")) break;
-            String botStr = chatSession.multisentenceRespond(userStr);
-            System.out.println("Bot: " + botStr);
-            // bot_input element
-            Element chatBot = doc.createElement("chatBot");
-            Attr attrType1 = doc.createAttribute("string");
-            attrType1.setValue("input");
-            chatBot.setAttributeNode(attrType1);
-            chatBot.appendChild(doc.createTextNode(botStr));
-            chat.appendChild(chatBot);
+    public void insertParticipantStr(String msg) {
+        // user_input element
+        Element user = doc.createElement("user");
+        Attr attrType = doc.createAttribute("string");
+        attrType.setValue("input");
+        user.setAttributeNode(attrType);
+        user.appendChild(doc.createTextNode(msg));
+        chat.appendChild(user);
+    }
 
-        }
-        long end_timestamp = System.currentTimeMillis();
+    public void insertBotStr(String msg) {
+        Element chatBot = doc.createElement("chatBot");
+        Attr attrType1 = doc.createAttribute("string");
+        attrType1.setValue("input");
+        chatBot.setAttributeNode(attrType1);
+        chatBot.appendChild(doc.createTextNode(msg));
+        chat.appendChild(chatBot);
+    }
 
+    public void dumpChatSession(long start_timestamp, long end_timestamp) throws TransformerException {
         String fileName = start_timestamp + "-" + end_timestamp + "-user_id";
         fileName = fileName.replace(':','-');
         // write the content into xml file
