@@ -18,11 +18,12 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
     public WebSocketHandler() throws ParserConfigurationException {
     }
 
+
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException, TransformerException {
         String msg = message.getPayload();
         System.out.println(msg);
-        if(msg.equals("START")) {
+        if(msg.equals("HI")) {
             startTime = System.currentTimeMillis();
             chatService.insertParticipantStr(msg);
             String botStr = chatService.chatSession.multisentenceRespond(msg);
