@@ -1,0 +1,26 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<aiml version = "1.0.1">
+   <category>
+      <pattern>HI</pattern>
+      <template>Are you having problem with someone</template>
+   </category>
+
+   <category>
+      <pattern>YES</pattern>
+      <that>Are you having problem with someone</that>
+      <template>Alright! We think it will be helpful for you to start with the activity. Please type "Okay" to start</template>
+   </category>
+
+   <category>
+      <pattern>NO</pattern>
+      <that>Are you having problem with someone</that>
+      <template>Okay! What would you like to talk about instead?</template>
+   </category>
+
+   <category>
+       <pattern>I WANT TO TALK ABOUT*</pattern>
+       <that>Okay! What would you like to talk about instead?</that>
+       <template>That's great! Let's switch to <star/></template>
+      </category>
+
+</aiml>

@@ -2,19 +2,18 @@
 <aiml version="2.0">
 
 <category>
-    <pattern>START</pattern>
+    <pattern>OKAY</pattern>
     <template>
     	<think>
-            <set name="question1">Are you having problem with someone?(Yes/No)?</set>
-            <set name="question2">Who is/are the person/s?</set>
-            <set name="question3">Can you describe the problem from someone's point of view who was not involved in it?</set>
-            <set name="question4">How do you describe this problem?</set>
-            <set name="question5">How does the other person describe it?</set>
-            <set name="question6">Why do you see the problem that way?</set>
-            <set name="question7">Why does the other person see the problem that way?</set>
-            <set name="question8">What/How do you feel about it?</set>
-            <set name="question9">What kind of thoughts did you have about it?</set>
-            <set name="question10">Thank you for your response, type END to end session</set>
+            <set name="question1">Who is the person you are having problem with?</set>
+            <set name="question2">Can you describe the problem from someone's point of view who was not involved in it?</set>
+            <set name="question3">How do you describe this problem?</set>
+            <set name="question4">How does <get name = "person_name"/> describe it?</set>
+            <set name="question5">Why do you see the problem that way?</set>
+            <set name="question6">Why does <get name = "person_name"/> see the problem that way?</set>
+            <set name="question7">What/How do you feel about it?</set>
+            <set name="question8">What kind of thoughts did you have about it?</set>
+            <set name="question9">Thank you for your response, type END to end session</set>
             <set name="responses">Session Responses: </set>
             <set name="qnum">1</set>
     	</think>
@@ -54,6 +53,12 @@
     <template>
         That's the end of the session
     </template>
+</category>
+
+<category>
+    <pattern>*</pattern>
+    <that>Who is the person you are having problem with?</that>
+    <set name = "person_name"> <star/> </set>
 </category>
 
 </aiml>
