@@ -1,0 +1,5 @@
+0,INITIAL HANDSHAKING,*,*,Hello there#Comma participant.,that.aiml
+0,HELLO,*,*,Are you having problem with someone,that.aiml
+0,YES,ARE YOU HAVING PROBLEM WITH SOMEONE,*,Alright! We think it will be helpful for you to start with the activity. Please type "Okay" to start,that.aiml
+0,NO,ARE YOU HAVING PROBLEM WITH SOMEONE,*,Okay! What would you like to talk about instead?,that.aiml
+0,I WANT TO TALK ABOUT*,OKAY! WHAT WOULD YOU LIKE TO TALK ABOUT INSTEAD?,*,That's great! Let's switch to <star/>,that.aiml
