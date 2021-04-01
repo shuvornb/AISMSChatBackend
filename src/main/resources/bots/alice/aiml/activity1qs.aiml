@@ -3,10 +3,20 @@
 
 <category>
     <pattern>OKAY</pattern>
+    <template>Who is the person you are having problem with?</template>
+</category>
+
+<category>
+    <pattern>*</pattern>
+    <template>Can we ask you a few question about you and <set name = "person_name"> <star/> </set>? </template>
+</category>
+
+<category>
+    <pattern>Yes</pattern>
     <template>
     	<think>
-            <set name="question1">Who is the person you are having problem with?</set>
-            <set name="question2">Can you describe the problem from someone's point of view who was not involved in it?</set>
+    	    <set name="question1">How are you related to <get name = "person_name"/>?</set>
+            <set name="question2">Can you describe the problem from someone else's point of view who was not involved in it?</set>
             <set name="question3">How do you describe this problem?</set>
             <set name="question4">How does <get name = "person_name"/> describe it?</set>
             <set name="question5">Why do you see the problem that way?</set>
@@ -55,10 +65,5 @@
     </template>
 </category>
 
-<category>
-    <pattern>*</pattern>
-    <that>Who is the person you are having problem with?</that>
-    <set name = "person_name"> <star/> </set>
-</category>
 
 </aiml>
