@@ -36,7 +36,7 @@ public class ActivityController {
 
     @RequestMapping(value = "/sync/audio", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public AudioSyncResponse syncAudioResponse(@RequestParam("file") MultipartFile file, @RequestParam("participantId") Long participantId, @RequestParam("activityId") Long activityId) throws IOException {
-        String fileName = participantId + "_" + activityId + "_" + System.currentTimeMillis() + ".m4a";
+        String fileName = participantId + "_" + activityId + "_" + System.currentTimeMillis() + ".aac";
         Path path = Paths.get("C:\\Users\\shuvo\\Desktop\\Audio\\" + fileName);
         try {
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
