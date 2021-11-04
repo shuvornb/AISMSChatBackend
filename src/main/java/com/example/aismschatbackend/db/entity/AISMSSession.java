@@ -8,9 +8,9 @@ import java.io.Serializable;
 import java.util.Map;
 
 @Entity
-@Table(name = "ai_sms_activity")
+@Table(name = "ai_sms_session")
 @TypeDef(name = "JsonbType", typeClass = JsonbType.class)
-public class AISMSActivity implements Serializable {
+public class AISMSSession implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,24 +26,25 @@ public class AISMSActivity implements Serializable {
     @Type(type = "JsonbType")
     public Map<String, Object> questions;
 
-    public AISMSActivity() {
+    @Column(name = "associated_key")
+    public String associatedKey;
 
-    }
+    @Column(name = "intervention_type")
+    public String interventionType;
 
-    public AISMSActivity(Long id, String title, String description, Map<String, Object> questions) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.questions = questions;
+    public AISMSSession() {
+
     }
 
     @Override
     public String toString() {
-        return "AISMSActivity{" +
+        return "AISMSSession{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", questions=" + questions +
+                ", associatedKey='" + associatedKey + '\'' +
+                ", interventionType='" + interventionType + '\'' +
                 '}';
     }
 }
