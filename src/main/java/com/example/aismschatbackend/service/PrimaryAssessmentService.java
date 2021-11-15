@@ -1,9 +1,12 @@
 package com.example.aismschatbackend.service;
 
 import com.example.aismschatbackend.communication.request.AddPrimaryAssessmentRequest;
+import com.example.aismschatbackend.communication.request.FiveKeyAssessRequest;
 import com.example.aismschatbackend.communication.response.GetPrimaryAssessmentListResponse;
 import com.example.aismschatbackend.db.entity.AISMSPrimaryAssessmentLog;
+import com.example.aismschatbackend.db.entity.AISMSRWAT;
 import com.example.aismschatbackend.db.repository.AISMSPrimaryAssessmentLogRepository;
+import com.example.aismschatbackend.db.repository.AISMSRWATRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,9 @@ public class PrimaryAssessmentService {
 
     @Autowired
     private AISMSPrimaryAssessmentLogRepository primaryAssessmentLogRepository;
+
+    @Autowired
+    private AISMSRWATRepository rwatRepository;
 
     public void addPrimaryAssessment(AddPrimaryAssessmentRequest request) {
         AISMSPrimaryAssessmentLog assessmentLog = new AISMSPrimaryAssessmentLog();
@@ -36,5 +42,10 @@ public class PrimaryAssessmentService {
         response.assessmentCount = primaryAssessmentLogList.size();
         response.primaryAssessmentLogList = primaryAssessmentLogList;
         return response;
+    }
+
+    public void updateRWATResult(Long userId, FiveKeyAssessRequest fiveKey) {
+        AISMSRWAT rwatResult = new AISMSRWAT(fiveKey, userId);
+        rwatRepository.save(rwatResult);
     }
 }

@@ -2,6 +2,7 @@ package com.example.aismschatbackend.controller;
 
 import com.example.aismschatbackend.communication.request.AddPrimaryAssessmentRequest;
 import com.example.aismschatbackend.communication.request.AddSessionRequest;
+import com.example.aismschatbackend.communication.request.FiveKeyAssessRequest;
 import com.example.aismschatbackend.communication.response.GetPrimaryAssessmentListResponse;
 import com.example.aismschatbackend.communication.response.GetSessionListResponse;
 import com.example.aismschatbackend.communication.response.OKResponse;
@@ -49,5 +50,12 @@ public class FiveKeyReentryController {
         logger.info(request.toString());
         sessionService.addSession(request);
         return new OKResponse("Successfully added a session.");
+    }
+
+    @RequestMapping(value = "primary-assessment/rwat", method = RequestMethod.POST)
+    public OKResponse updateRWATAssessment(@RequestBody FiveKeyAssessRequest fiveKey) {
+        logger.info("Update user 5key assessment api invoked");
+        primaryAssessmentService.updateRWATResult((long) 50, fiveKey);
+        return new OKResponse("Successfully updated the RWAT assessment");
     }
 }
